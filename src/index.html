@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+@@include('parts/head.html', {
+"title": "TodoList"
+})
+
+<body>
+    <div class="container">
+        <header>
+            <h3 class="logo">TodoList</h3>
+        </header>
+        <div class="form">
+            <section class="add-task">
+                <div style="display: flex; position: relative;">
+                    <input class="checkbox-checked-all-task" type="checkbox" id="checkbox-checked-all">
+                    <label for="checkbox-checked-all" class="custom-checkbox-checked-all-task"></label>
+                    <input class="add-task__input" id="addTask" placeholder="What needs to be done?" type="text">
+                    <button class="button" id="btn-addTask">+</button>
+                </div>
+                <div>
+                    <ul class="list" id="list">
+                    </ul>
+                </div>
+                <div class="down-menu">
+                    <div id="count"></div>
+                    <div class="btn-container">
+                        <button class="filter-btn" id="filterAll">All</button>
+                        <button class="filter-btn" id="filterActive">Active</button>
+                        <button class="filter-btn" id="filterComplete">Complete</button>
+                    </div>
+                    <button id="clear-btn" class="clear-btn">Clear completed</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="js/app.min.js"></script>
+</body>
+
+</html>
