@@ -345,6 +345,7 @@ input::placeholder {
   right: 10px;
   top: 0;
   padding: 0;
+  padding-right: 6px;
   font-weight: 100;
   font-size: 35px;
   line-height: auto;
