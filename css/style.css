@@ -439,6 +439,10 @@ input::placeholder {
   .list__task .task__del-btn {
     opacity: 1;
   }
+
+  .down-menu .btn-container .filter-btn {
+    background-color: #ffa82e;
+  }
 }
 
 @media (max-width: 540px) {
