@@ -49,6 +49,7 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
+    "gh-pages": "^6.1.1",
     "uuid": "^9.0.1"
   }
 }
