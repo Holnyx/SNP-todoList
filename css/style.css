@@ -440,7 +440,7 @@ input::placeholder {
     opacity: 1;
   }
 
-  .down-menu .btn-container .filter-btn {
+  .down-menu .btn-container .filter-btn:hover {
     background-color: #ffa82e;
   }
 }
