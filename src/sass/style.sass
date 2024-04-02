@@ -82,8 +82,12 @@ input::placeholder
     cursor: pointer
     &:hover
         background-color: $color-orange-hover
+        @include mobile-xl
+            background-color: $color-orange
     &:active
         background-color: $color-red
+        @include mobile-xl
+            background-color: $color-red
 
 .list
     display: flex
@@ -169,15 +173,19 @@ input::placeholder
                 position: absolute
                 right: 10px
                 top: 0
+                padding: 0
+                padding-right: 6px
                 @include font-style(100, 35px, auto, auto)
+                color: $color-black
                 background: transparent
                 border: none
                 opacity: 0
                 transition: .5s opacity
                 cursor: pointer
+                @include mobile-xl
+                    opacity: 1
                 @include mobile-sm
                     @include font-style(100, 30px, auto, auto)
-
 .down-menu
     display: none
     align-items: center
@@ -220,7 +228,8 @@ input::placeholder
             cursor: pointer
             &:hover
                 background-color: $color-orange-hover
-
+                @include mobile-xl
+                    background-color: $color-red
         .btn-focus
             background-color: $color-red
 
@@ -229,6 +238,7 @@ input::placeholder
     width: 110px
     padding: 0
     font-size: 14px
+    color: $color-black
     background-color: transparent
     border: none
     cursor: pointer
