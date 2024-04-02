@@ -436,6 +436,14 @@ input::placeholder {
 }
 
 @media (max-width: 768px) {
+  .button:hover {
+    background-color: #ffa82e;
+  }
+
+  .button:active {
+    background-color: #e85900;
+  }
+
   .list__task .task__del-btn {
     opacity: 1;
   }
