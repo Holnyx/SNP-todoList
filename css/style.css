@@ -348,6 +348,7 @@ input::placeholder {
   font-size: 35px;
   line-height: auto;
   letter-spacing: auto;
+  color: #1b1f2b;
   background: rgba(0,0,0,0);
   border: none;
   opacity: 0;
@@ -402,6 +403,7 @@ input::placeholder {
   width: 110px;
   padding: 0;
   font-size: 14px;
+  color: #1b1f2b;
   background-color: rgba(0,0,0,0);
   border: none;
   cursor: pointer;
