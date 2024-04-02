@@ -431,6 +431,12 @@ input::placeholder {
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .list__task .task__del-btn {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 540px) {
   .down-menu {
     position: relative;
