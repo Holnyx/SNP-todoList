@@ -32,7 +32,7 @@ code
     background-color: white
     border-radius: 30px
 
-    @include mobile-sm
+    @include mobile
         padding: 20px
 
 .add-task
@@ -63,7 +63,7 @@ code
         background-color: $color-beige-200
         outline: solid $color-grey-300
 
-    @include mobile-sm
+    @include mobile
         padding-left: 40px
         font-size: 14px
 
@@ -82,11 +82,11 @@ input::placeholder
     cursor: pointer
     &:hover
         background-color: $color-orange-hover
-        @include mobile-xl
+        @include mobile
             background-color: $color-orange
     &:active
         background-color: $color-red
-        @include mobile-xl
+        @include mobile
             background-color: $color-red
 
 .list
@@ -160,7 +160,7 @@ input::placeholder
                 transition: .4s color
                 cursor: pointer
 
-                @include mobile-sm
+                @include mobile
                     @include font-style(400, 16px, 142%, auto)
 
             &__title--checked
@@ -182,9 +182,9 @@ input::placeholder
                 opacity: 0
                 transition: .5s opacity
                 cursor: pointer
-                @include mobile-xl
+                @include mobile
                     opacity: 1
-                @include mobile-sm
+                @include mobile
                     @include font-style(100, 30px, auto, auto)
 .down-menu
     display: none
@@ -192,7 +192,7 @@ input::placeholder
     justify-content: space-between
     gap: 10px
 
-    @include mobile-md
+    @include mobile
         position: relative
         justify-content: space-around
         margin-top: 60px
@@ -202,7 +202,7 @@ input::placeholder
         width: 110px
         font-size: 14px
 
-        @include mobile-md
+        @include mobile
             float: left
 
     .btn-container
@@ -210,7 +210,7 @@ input::placeholder
         justify-content: space-between
         gap: 5px
 
-        @include mobile-md
+        @include mobile
             position: absolute
             left: 0
             right: 0
@@ -228,7 +228,7 @@ input::placeholder
             cursor: pointer
             &:hover
                 background-color: $color-orange-hover
-                @include mobile-xl
+                @include mobile
                     background-color: $color-red
         .btn-focus
             background-color: $color-red
@@ -243,7 +243,7 @@ input::placeholder
     border: none
     cursor: pointer
 
-    @include mobile-md
+    @include mobile
         float: right
 
     &--hide
@@ -267,6 +267,6 @@ input::placeholder
     transition: .3s filter
     cursor: pointer
 
-    @include mobile-sm
+    @include mobile
         transform: scale(.7)
         left: 10px
