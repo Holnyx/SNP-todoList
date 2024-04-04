@@ -78,7 +78,7 @@ input::placeholder
     border-radius: 10px
     color: white
     background-color: $color-orange
-    transition: .3s background-color
+    transition: .3s background-color ease
     cursor: pointer
     &:hover
         background-color: $color-orange-hover
@@ -134,30 +134,27 @@ input::placeholder
                 border: $color-black solid 1px
                 border-radius: 50%
                 cursor: pointer
-                &::before
-                    content: ''
+                .custom-checkbox-img
                     position: absolute
                     left: 50%
                     top: 50%
-                    width: 8px
-                    height: 8px
-                    transition: .2s transform
+                    width: 10px
+                    height: 10px
+                    transition: .2s transform ease
                     transform: translate(-50%, -50%) scale(0)
 
                 &--hide
                     position: relative
                     z-index: -1
 
-            &__checkbox:checked + .task__custom-checkbox::before
-                transform: translate(-50%, -50%) scale(1)
-                background-image: url('@img/Rectangle.svg')
-                background-repeat: no-repeat
-                background-position: center
+            &__checkbox:checked + .task__custom-checkbox
+                .custom-checkbox-img
+                    transform: translate(-50%, -50%) scale(1)
 
             &__title
                 padding-left: 6px
                 @include font-style(400, 22px, 142%, auto)
-                transition: .4s color
+                transition: .4s color ease
                 cursor: pointer
 
                 @include mobile
@@ -166,7 +163,7 @@ input::placeholder
             &__title--checked
                 text-decoration: line-through
                 color: $color-grey-300
-                transition: .4s color
+                transition: .4s color ease
                 cursor: pointer
 
             &__del-btn
@@ -180,7 +177,7 @@ input::placeholder
                 background: transparent
                 border: none
                 opacity: 0
-                transition: .5s opacity
+                transition: .5s opacity ease
                 cursor: pointer
                 @include mobile
                     opacity: 1
@@ -224,7 +221,7 @@ input::placeholder
             background-color: $color-orange
             border-radius: 5px
             border: none
-            transition: .3s background-color
+            transition: .3s background-color ease
             cursor: pointer
             &:hover
                 background-color: $color-orange-hover
@@ -260,13 +257,13 @@ input::placeholder
     position: absolute
     top: 16px
     left: 14px
-    width: 24px
-    height: 24px
-    background-image: url('@img/ic-dropdown.svg')
-    filter: invert(2) grayscale(1000%) contrast(.6)
-    transition: .3s filter
-    cursor: pointer
+    width: 26px
+    height: 26px
+    .custom-checkbox-checked-all-task-img
+        filter: invert(2) grayscale(1000%) contrast(.6)
+        transition: .3s filter ease
+        cursor: pointer
 
-    @include mobile
-        transform: scale(.7)
-        left: 10px
+        @include mobile
+            transform: scale(.7)
+            left: 10px

@@ -47,7 +47,11 @@ export const isWebp = () => {
         return `
         <li class="list__task" id="list__task">
             <input class="task__checkbox" type="checkbox" id="${newTask.id}">
-            <label for="${newTask.id}" class="task__custom-checkbox"></label>
+            <label for="${newTask.id}" class="task__custom-checkbox">
+                <svg class="custom-checkbox-img" width="10" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.293044 4.53581C0.683569 4.14529 1.31673 4.14529 1.70726 4.53581L4.62161 7.45017L11.1574 0.914353C11.5479 0.523829 12.1811 0.523829 12.5716 0.914353C12.9622 1.30488 12.9622 1.93804 12.5716 2.32857L5.32872 9.57149C4.93819 9.96201 4.30503 9.96201 3.9145 9.57149L0.293044 5.95003C-0.09748 5.5595 -0.09748 4.92634 0.293044 4.53581Z" fill="#1B1F2B"/>
+                </svg>
+            </label>
             <label class="task__title" id="task-${newTask.id}">${newTask.title}</label>
             <input class="input-value" id="${newTask.id}" value="${newTask.title}" style="display: none;">
             <button id="${newTask.id}" class="task__del-btn">×</button>
@@ -112,9 +116,9 @@ export const isWebp = () => {
         // Adding or removing a button style perform all tasks if there is at least one completed
         const findAllTasksIsDone = state.every(t => t.isDone)
         if (findAllTasksIsDone) {
-            document.querySelector('.custom-checkbox-checked-all-task').style.filter = 'none'
+            document.querySelector('.custom-checkbox-checked-all-task-img').style.filter = 'none'
         } else {
-            document.querySelector('.custom-checkbox-checked-all-task').style.filter = ''
+            document.querySelector('.custom-checkbox-checked-all-task-img').style.filter = ''
         }
         filteredTasksToActiveBtn()
         deleteAllTasksCompleteBtn() // Displaying a button for deleting completed tasks
@@ -172,20 +176,20 @@ export const isWebp = () => {
             state.forEach(t => t.isDone = true)
             taskTitle.forEach(el => el.classList.add('task__title--checked'))
             checkbox.forEach(el => el.checked = true)
-            document.querySelector('.custom-checkbox-checked-all-task').style.filter = 'none'  // Changing the button style
+            document.querySelector('.custom-checkbox-checked-all-task-img').style.filter = 'none'  // Changing the button style
         } else {
             state.forEach(t => t.isDone = false)
             taskTitle.forEach(el => el.classList.remove('task__title--checked'))
             checkbox.forEach(el => el.checked = false)
-            document.querySelector('.custom-checkbox-checked-all-task').style.filter = '' // Changing the button style
+            document.querySelector('.custom-checkbox-checked-all-task-img').style.filter = '' // Changing the button style
         }
         filteredTasksToActiveBtn()
         deleteAllTasksCompleteBtn() // Displaying a button for deleting completed tasks
         countTasksContainer.innerHTML = countTasks() // Changing the value of the counter of left tasks
     }
     const buttonChangeAllTasksStatusStyle = () => {
-        state.length !== 0 ? document.querySelector('.custom-checkbox-checked-all-task').style.display = 'block'
-            : document.querySelector('.custom-checkbox-checked-all-task').style.display = 'none'
+        state.length !== 0 ? document.querySelector('.custom-checkbox-checked-all-task-img').style.display = 'block'
+            : document.querySelector('.custom-checkbox-checked-all-task-img').style.display = 'none'
     }
     buttonChangeAllTasksStatusStyle()
 
@@ -233,7 +237,7 @@ export const isWebp = () => {
         if (event.target && event.target.id === 'filterComplete') {
             filterCompleteTasks()
         }
-        if (event.target && event.target.classList.contains('custom-checkbox-checked-all-task')) {
+        if (event.target && event.target.classList.contains('custom-checkbox-checked-all-task-img')) {
             changeAllTasksStatus()
         }
         // deleteTask--------------------------
