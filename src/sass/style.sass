@@ -77,17 +77,17 @@ input::placeholder
     border: none
     border-radius: 10px
     color: white
-    background-color: $color-orange
+    background-color: $color-green-400
     transition: .3s background-color ease
     cursor: pointer
     &:hover
-        background-color: $color-orange-hover
+        background-color: $color-green-200
         @include mobile
-            background-color: $color-orange
+            background-color: $color-green-400
     &:active
-        background-color: $color-red
+        background-color: $color-orange-200
         @include mobile
-            background-color: $color-red
+            background-color: $color-orange-200
 
 .list
     display: flex
@@ -179,9 +179,9 @@ input::placeholder
                 opacity: 0
                 transition: .5s opacity ease
                 cursor: pointer
+
                 @include mobile
                     opacity: 1
-                @include mobile
                     @include font-style(100, 30px, auto, auto)
 .down-menu
     display: none
@@ -191,44 +191,48 @@ input::placeholder
 
     @include mobile
         position: relative
-        justify-content: space-around
         margin-top: 60px
 
     .count
         display: block
         width: 110px
         font-size: 14px
-
         @include mobile
-            float: left
+            position: absolute
+            bottom: 55px
 
     .btn-container
         display: flex
         justify-content: space-between
         gap: 5px
+        max-width: 175px
+        width: 100%
 
         @include mobile
             position: absolute
             left: 0
             right: 0
-            bottom: 40px
+            bottom: 0
+            max-width: 175px
+            width: 100%
+            margin: 0 auto
 
         .filter-btn
             padding: 8px
             width: 100%
             @include font-style(400, 14px, 142%, auto)
             color: white
-            background-color: $color-orange
+            background-color: $color-green-400
             border-radius: 5px
             border: none
             transition: .3s background-color ease
             cursor: pointer
             &:hover
-                background-color: $color-orange-hover
+                background-color: $color-green-200
                 @include mobile
-                    background-color: $color-red
+                    background-color: $color-orange-200
         .btn-focus
-            background-color: $color-red
+            background-color: $color-orange-200
 
 .clear-btn
     position: relative
@@ -239,12 +243,11 @@ input::placeholder
     background-color: transparent
     border: none
     cursor: pointer
-
     @include mobile
-        float: right
+        bottom: 55px
 
     &--hide
-        z-index: -1
+        z-index: -999
 
 .checkbox-checked-all-task
     position: absolute
@@ -259,6 +262,8 @@ input::placeholder
     left: 14px
     width: 26px
     height: 26px
+    @include mobile
+        left: 10px
     .custom-checkbox-checked-all-task-img
         filter: invert(2) grayscale(1000%) contrast(.6)
         transition: .3s filter ease
