@@ -152,6 +152,11 @@ export const isWebp = () => {
         taskTarget.querySelector('.task__title').textContent = inputTitleElement.value // Changing the title value from the input
         taskTarget.querySelector('.task__custom-checkbox').classList.remove('task__custom-checkbox--hide') // Returning the task status change button
         taskTarget.querySelector('.task__del-btn').style.display = 'block' // Restoring the display of the task delete button
+        // Remove tasks if title is empty
+        if (state[thisTask].title.trim() === '') {
+            taskTarget.remove()
+            deleteTask(taskId)
+        }
     }
 
     // changeAllTasksStatus-----------------
