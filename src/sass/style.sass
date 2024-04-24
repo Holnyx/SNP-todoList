@@ -105,7 +105,7 @@ input::placeholder
         border: 1px solid $color-beige-200
         border-radius: 10px
         list-style-type: none
-        
+
         &:hover .task__del-btn
             opacity: 1
 
@@ -142,34 +142,29 @@ input::placeholder
                     top: 50%
                     width: 10px
                     height: 10px
-                    transition: .2s transform ease
                     transform: translate(-50%, -50%) scale(0)
+                    &--show
+                        transform: translate(-50%, -50%) scale(1)
 
                 &--hide
                     position: relative
                     z-index: -1
-
-            &__checkbox:checked + .task__custom-checkbox
-                .custom-checkbox-img
-                    transform: translate(-50%, -50%) scale(1)
 
             &__title
                 margin-right: 16px
                 margin-left: 6px
                 @include font-style(400, 22px, 142%, auto)
                 text-align: start
-                transition: .4s color ease
+                color: $color-black
                 cursor: pointer
                 word-break: break-all
 
                 @include mobile
                     @include font-style(400, 16px, 142%, auto)
 
-            &__title--checked
-                text-decoration: line-through
-                color: $color-grey-300
-                transition: .4s color ease
-                cursor: pointer
+                &--checked
+                    text-decoration: line-through
+                    color: $color-grey-300
 
             &__del-btn
                 position: relative
@@ -276,7 +271,12 @@ input::placeholder
         filter: invert(2) grayscale(1000%) contrast(.6)
         transition: .3s filter ease
         cursor: pointer
-
+        &--change-color
+            filter: none
+        &--hide
+            display: none
+        &--show
+            display: block
         @include mobile
             transform: scale(.7)
             left: 10px
