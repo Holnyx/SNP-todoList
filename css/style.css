@@ -307,17 +307,16 @@ input::placeholder {
   top: 50%;
   width: 10px;
   height: 10px;
-  transition: .2s transform ease;
   transform: translate(-50%, -50%) scale(0);
+}
+
+.list__task .task__custom-checkbox .custom-checkbox-img--show {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .list__task .task__custom-checkbox--hide {
   position: relative;
   z-index: -1;
-}
-
-.list__task .task__checkbox:checked+.task__custom-checkbox .custom-checkbox-img {
-  transform: translate(-50%, -50%) scale(1);
 }
 
 .list__task .task__title {
@@ -328,7 +327,7 @@ input::placeholder {
   line-height: 142%;
   letter-spacing: auto;
   text-align: start;
-  transition: .4s color ease;
+  color: #1b1f2b;
   cursor: pointer;
   word-break: break-all;
 }
@@ -336,8 +335,6 @@ input::placeholder {
 .list__task .task__title--checked {
   text-decoration: line-through;
   color: #a6a6a6;
-  transition: .4s color ease;
-  cursor: pointer;
 }
 
 .list__task .task__del-btn {
@@ -440,6 +437,18 @@ input::placeholder {
   filter: invert(2) grayscale(1000%) contrast(0.6);
   transition: .3s filter ease;
   cursor: pointer;
+}
+
+.custom-checkbox-checked-all-task .custom-checkbox-checked-all-task-img--change-color {
+  filter: none;
+}
+
+.custom-checkbox-checked-all-task .custom-checkbox-checked-all-task-img--hide {
+  display: none;
+}
+
+.custom-checkbox-checked-all-task .custom-checkbox-checked-all-task-img--show {
+  display: block;
 }
 
 @media (max-width: 520px) {
