@@ -1,7 +1,5 @@
 import { filteredTasksBtnAddClass } from './filteredTasksBtnAddClass.js'
-import { filterActiveTasks } from './filterActiveTasks.js'
-import { filterAllTasks } from './filterAllTasks.js'
-import { filterCompleteTasks } from './filterCompleteTasks.js'
+import { filteredTasks } from './filteredTasks.js'
 
 
 export const isWebp = () => {
@@ -50,9 +48,8 @@ export const isWebp = () => {
             title: inputAddTask.value,
             isDone: false
         }
-
-        if (inputAddTask.value.length === 0) { return }  // Checking the input for characters
-        if (inputAddTask.value.trim() === '') {
+       // Checking the input for characters
+        if (inputAddTask.value.trim() === '' || inputAddTask.value.length === 0) {
             inputAddTask.value = ''
             return
         }
@@ -129,7 +126,7 @@ export const isWebp = () => {
         if (state.length > 0) {
             document.querySelector('.add-task').style.gap = '18px'
             document.querySelector('.down-menu').style.display = 'flex'
-            countTasksContainer.innerHTML = countTasks()// Changing the value of the counter of left tasks
+            countTasksContainer.innerHTML = countTasks() // Changing the value of the counter of left tasks
         }
     }
     addStyleListTasks()
@@ -137,23 +134,23 @@ export const isWebp = () => {
     // deleteTask--------------------------
     const deleteTask = (taskId) => {
         const thisTaskIndex = state.findIndex(el => el.id == parseInt(taskId))
-        if (thisTaskIndex !== -1) {
-            state.splice(thisTaskIndex, 1)
-        }
+        thisTaskIndex !== -1 && state.splice(thisTaskIndex, 1)
         removeStylesIfNotTasks()
         countTasksContainer.innerHTML = countTasks() // Changing the value of the counter of left tasks
         saveTasksToLocalStorage(state);
         renderTasks(state)
     }
     const removeStylesIfNotTasks = () => {
-        state.length === 0 ? document.querySelector('.add-task').style.gap = '0px' : ''
-        state.length === 0 ? document.querySelector('.down-menu').style.display = 'none' : ''
+        if (state.length === 0) {
+            document.querySelector('.add-task').style.gap = '0px'
+            document.querySelector('.down-menu').style.display = 'none'
+        }
     }
 
     // changeTaskStatus--------------------
     const changeTaskStatus = (taskId) => {
-        const thisTask = state.findIndex(t => t.id == taskId) // Finding a specific task by index
-        state[thisTask].isDone = !state[thisTask].isDone // Changing the isDone values
+        const currentTaskIndex = state.findIndex(t => t.id == taskId) // Finding a specific task by index
+        state[currentTaskIndex].isDone = !state[currentTaskIndex].isDone // Changing the isDone values
         countTasksContainer.innerHTML = countTasks() // Changing the value of the counter of left tasks
         deleteAllTasksCompleteBtn() // Displaying a button for deleting completed tasks
         buttonChangeAllTasksStatusStyle()
@@ -187,13 +184,13 @@ export const isWebp = () => {
         const inputTitleElement = taskTarget.querySelector('.input-value')
         taskTarget.querySelector('.task__title').style.display = 'block'  // Returning the title display
         taskTarget.querySelector('.input-value').style.display = 'none' // Hide the input display for a specific task that was clicked
-        const thisTask = state.findIndex(t => t.id == taskId) // Finding the index of a specific task
-        state[thisTask].title = inputTitleElement.value.trim() // Set the value of the input to the title state object
+        const currentTaskIndex = state.findIndex(t => t.id == taskId) // Finding the index of a specific task
+        state[currentTaskIndex].title = inputTitleElement.value.trim() // Set the value of the input to the title state object
         taskTarget.querySelector('.task__title').textContent = inputTitleElement.value.trim() // Changing the title value from the input
         taskTarget.querySelector('.task__custom-checkbox').classList.remove('task__custom-checkbox--hide') // Returning the task status change button
         taskTarget.querySelector('.task__del-btn').style.display = 'block' // Restoring the display of the task delete button
         // Remove tasks if title is empty
-        if (state[thisTask].title.trim() === '' || state[thisTask].title === '') {
+        if (state[currentTaskIndex].title.trim() === '' || state[currentTaskIndex].title === '') {
             taskTarget.remove()
             deleteTask(taskId)
             buttonChangeAllTasksStatusStyle()
@@ -206,40 +203,22 @@ export const isWebp = () => {
         const inputTitleElement = taskTarget.querySelector('.input-value');
         taskTarget.querySelector('.task__title').style.display = 'block'; // Returning the title display
         inputTitleElement.style.display = 'none'; // Hide the input display for a specific task that was clicked
-        const thisTask = state.findIndex(t => t.id == taskId); // Finding the index of a specific task
-        state[thisTask].title = state[thisTask].title // Set the value of the input to the title state object
-        inputTitleElement.value = state[thisTask].title
-        taskTarget.querySelector('.task__title').textContent = state[thisTask].title; // Changing the title value from the input
+        const currentTaskIndex = state.findIndex(t => t.id == taskId); // Finding the index of a specific task
+        state[currentTaskIndex].title = state[currentTaskIndex].title // Set the value of the input to the title state object
+        inputTitleElement.value = state[currentTaskIndex].title
+        taskTarget.querySelector('.task__title').textContent = state[currentTaskIndex].title; // Changing the title value from the input
         taskTarget.querySelector('.task__del-btn').style.display = 'block'; // Restoring the display of the task delete button
     }
 
 
     // changeAllTasksStatus-----------------
-    let isClicked = true // Variable for button click
     const changeAllTasksStatus = () => {
         const taskTitle = document.querySelectorAll('.task__title')
         const checkbox = document.querySelectorAll('.task__checkbox')
         const findTaskNotIsDone = state.some(t => !t.isDone) // Find that at least one task is not done
-        // Change the value of the variable depending on the fulfilled condition
-        switch (findTaskNotIsDone) {
-            case true:
-                isClicked = true
-                break;
-            case false:
-                isClicked = false
-                break;
-            default:
-                break;
-        }
-        // Changing the task status value
-        if (isClicked) {
-            state.forEach(t => t.isDone = true)
-            checkbox.forEach(el => el.checked = true)
-        } else {
-            state.forEach(t => t.isDone = false)
-            checkbox.forEach(el => el.checked = false)
-        }
-        taskTitle.forEach(title => title.classList.toggle('task__title--checked', isClicked));
+        state.forEach(t => t.isDone = findTaskNotIsDone)
+        checkbox.forEach(el => el.checked = findTaskNotIsDone)
+        taskTitle.forEach(title => title.classList.toggle('task__title--checked', findTaskNotIsDone));
         countTasksContainer.innerHTML = countTasks() // Changing the value of the counter of left tasks
         buttonChangeAllTasksStatusStyle()
         deleteAllTasksCompleteBtn() // Displaying a button for deleting completed tasks
@@ -255,17 +234,14 @@ export const isWebp = () => {
     }
     buttonChangeAllTasksStatusStyle()
 
+    const filterTasksType = ['filterAll', 'filterActive', 'filterComplete']
 
     const filteredTasksToActiveBtn = () => {
-        if (document.getElementById('filterComplete').classList.contains('btn-focus')) {
-            filterCompleteTasks()
-        }
-        if (document.getElementById('filterActive').classList.contains('btn-focus')) {
-            filterActiveTasks()
-        }
-        if (document.getElementById('filterAll').classList.contains('btn-focus')) {
-            filterAllTasks()
-        }
+        filterTasksType.forEach(filter => {
+            if (document.getElementById(filter).classList.contains('btn-focus')) {
+                filteredTasks(filter)
+            }
+        })
     }
 
     document.addEventListener('focusout', function (event) {
@@ -291,12 +267,11 @@ export const isWebp = () => {
     })
 
 
-
     document.addEventListener('click', function (event) {
         if (event.target && event.target.id === 'btn-addTask') {
             addNewTask()
         }
-        if (event.target && event.target.id === 'filterAll' || 'filterActive' || 'filterComplete') {
+        if (event.target && filterTasksType.includes(event.target.id)) {
             filteredTasksToActiveBtn()
         }
         if (event.target && event.target.classList.contains('custom-checkbox-checked-all-task-img')) {
