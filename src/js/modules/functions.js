@@ -94,7 +94,7 @@ export const isWebp = () => {
                 task.remove()
             }
         })
-        state.filter(t => t.isDone === true)
+        state.filter(t => t.isDone)
             .forEach(t => {
                 state.indexOf(t) !== -1 && state.splice(state.indexOf(t), 1)
             })
@@ -106,7 +106,7 @@ export const isWebp = () => {
     // Displaying a button for deleting completed tasks
     const deleteAllTasksCompleteBtn = () => {
         if (state.length > 0) {
-            state.some(t => t.isDone === true) ? document.querySelector('.clear-btn').classList.remove('clear-btn--hide')
+            state.some(t => t.isDone) ? document.querySelector('.clear-btn').classList.remove('clear-btn--hide')
                 : document.querySelector('.clear-btn').classList.add('clear-btn--hide')
         }
     }
